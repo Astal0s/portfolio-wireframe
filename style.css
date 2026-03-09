@@ -1,0 +1,178 @@
+:root {
+  --border: #cfcfcf;
+  --placeholder: #d8d8d8;
+  --text: #222;
+  --dark: #4a4a4a;
+}
+
+body {
+  background: #fafafa;
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.sommaire {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.sommaire h1 {
+  margin-bottom: 12px;
+}
+
+.sommaire ul {
+  margin-top: 20px;
+  line-height: 1.8;
+}
+
+.sommaire a {
+  color: #222;
+}
+
+.navbar {
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+}
+
+.top-space {
+  height: 80px;
+}
+
+.navbar-item.is-tab-look {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin: 0 0.35rem;
+  padding: 0.45rem 1rem;
+  color: var(--text);
+}
+
+.window-box {
+  border: 1px solid var(--border);
+  background: white;
+}
+
+.window-header {
+  background: var(--dark);
+  color: white;
+  padding: 0.65rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+
+.window-body {
+  padding: 1rem;
+  line-height: 1.5;
+}
+
+.fake-close {
+  width: 18px;
+  height: 18px;
+  border-radius: 2px;
+  background: #666;
+  display: inline-block;
+  position: relative;
+}
+
+.fake-close::before,
+.fake-close::after {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 3px;
+  width: 12px;
+  height: 2px;
+  background: white;
+}
+
+.fake-close::before {
+  transform: rotate(45deg);
+}
+
+.fake-close::after {
+  transform: rotate(-45deg);
+}
+
+.photo-placeholder,
+.skill-placeholder,
+.project-placeholder,
+.side-project-placeholder {
+  background: var(--placeholder);
+  border: 1px solid var(--border);
+}
+
+.photo-placeholder {
+  width: 100%;
+  max-width: 300px;
+  height: 290px;
+  margin: 0 auto;
+}
+
+.section-chip {
+  display: inline-block;
+  min-width: 230px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+}
+
+.skills-card {
+  height: 100%;
+}
+
+.skill-placeholder {
+  height: 180px;
+  width: 100%;
+}
+
+.project-placeholder {
+  width: 100%;
+  height: 310px;
+}
+
+.side-project-placeholder {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.75rem;
+}
+
+.project-card {
+  min-height: 100%;
+}
+
+.project-arrow {
+  width: 42px;
+  height: 32px;
+  padding: 0;
+}
+
+.site-footer {
+  border-top: 1px solid #ddd;
+  background: white;
+  padding: 1.2rem 3rem;
+  width: 100%;
+}
+
+.footer-inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
