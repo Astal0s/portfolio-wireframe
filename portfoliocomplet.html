@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Bran</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+  <style>
+    :root {
+      --border: #cfcfcf;
+      --light-bg: #f5f5f5;
+      --placeholder: #d8d8d8;
+      --text: #222;
+      --dark: #4a4a4a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
+
+    body {
+      background: #fafafa;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .top-space {
+      height: 88px;
+    }
+
+    .navbar {
+      border-bottom: 1px solid #ddd;
+      background: #fff;
+    }
+
+    .navbar-item.is-tab-look {
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin: 0 0.35rem;
+      padding: 0.45rem 1rem;
+      color: var(--text);
+    }
+
+    .navbar-item.is-tab-look:hover {
+      background: #f0f0f0;
+      color: #111;
+    }
+
+    .main-block {
+      margin-bottom: 3.5rem;
+    }
+
+    .window-box {
+      border: 1px solid var(--border);
+      background: white;
+      box-shadow: 0 5px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .window-header {
+      background: var(--dark);
+      color: white;
+      padding: 0.65rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+    }
+
+    .window-body {
+      padding: 1rem;
+      line-height: 1.5;
+    }
+
+    .fake-close {
+      width: 18px;
+      height: 18px;
+      border-radius: 2px;
+      background: #666;
+      display: inline-block;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .fake-close::before,
+    .fake-close::after {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 3px;
+      width: 12px;
+      height: 2px;
+      background: white;
+    }
+
+    .fake-close::before {
+      transform: rotate(45deg);
+    }
+
+    .fake-close::after {
+      transform: rotate(-45deg);
+    }
+
+    .photo-placeholder,
+    .skill-placeholder,
+    .project-placeholder,
+    .side-project-placeholder {
+      background: var(--placeholder);
+      border: 1px solid var(--border);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      max-width: 300px;
+      height: 290px;
+      margin: 0 auto;
+      object-fit: cover;
+      display: block;
+    }
+
+    .section-chip {
+      display: inline-block;
+      min-width: 230px;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      background: #fff;
+      font-weight: 600;
+      margin-bottom: 1.4rem;
+    }
+
+    .skills-card {
+      height: 100%;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .skill-placeholder {
+      height: 180px;
+      width: 100%;
+    }
+
+    .project-card {
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .project-placeholder {
+      width: 100%;
+      height: 310px;
+      object-fit: cover;
+      display: block;
+      background: var(--placeholder);
+      border: 1px solid var(--border);
+    }
+
+    .side-project-placeholder {
+      width: 100%;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: #666;
+      text-align: center;
+      padding: 0.75rem;
+    }
+
+    .project-arrow {
+      width: 42px;
+      height: 32px;
+      padding: 0;
+    }
+
+    .project-side {
+      opacity: 0.9;
+      transform: scale(0.96);
+    }
+
+    .project-details {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+
+    .project-details.is-open {
+      max-height: 220px;
+      margin-top: 1rem;
+    }
+
+    .site-footer {
+      border-top: 1px solid #ddd;
+      background: white;
+      padding: 1.2rem 3rem;
+      margin-top: 4rem;
+      width: 100%;
+    }
+
+    .footer-inner{
+      width:100%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:2rem;
+      max-width:none;
+    }
+
+    .see-more-btn {
+      margin-top: 0.5rem;
+    }
+
+    @media screen and (max-width: 1023px) {
+      .navbar-menu {
+        padding-bottom: 1rem;
+      }
+
+      .navbar-end {
+        align-items: center;
+      }
+
+      .navbar-item.is-tab-look {
+        display: block;
+        margin: 0.35rem 1rem;
+        text-align: center;
+      }
+
+      .project-side {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#accueil">
+          <strong>Portfolio</strong>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="mainNavbar">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div id="mainNavbar" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item is-tab-look" href="#accueil">accueil</a>
+          <a class="navbar-item is-tab-look" href="#competences">compétences</a>
+          <a class="navbar-item is-tab-look" href="#formation">formation</a>
+          <a class="navbar-item is-tab-look" href="#projets">projets</a>
+          <a class="navbar-item is-tab-look" href="#contact">contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="top-space"></div>
+
+  <main class="section">
+    <div class="container">
+
+      <section id="accueil" class="main-block">
+        <div class="columns is-variable is-6 is-vcentered">
+          <div class="column is-7">
+            <div class="window-box mb-5">
+              <div class="window-header">
+                <span>mini bio</span>
+                <span class="fake-close" aria-hidden="true"></span>
+              </div>
+              <div class="window-body">
+                Je suis étudiant en BUT MMI (Métiers du Multimédia et de l’Internet) et je m’intéresse particulièrement à l’expérience utilisateur, au développement web et à la création de projets interactifs. J’aime concevoir des interfaces claires, structurées et efficaces, en combinant réflexion sur l’utilisateur, hiérarchisation de l’information et développement technique. Je suis actuellement à la recherche d’une alternance dans le domaine du développement web, du design d’interface ou de la création numérique.
+              </div>
+            </div>
+
+            <div class="window-box" id="formation">
+              <div class="window-header">
+                <span>formation</span>
+                <span class="fake-close" aria-hidden="true"></span>
+              </div>
+              <div class="window-body">
+                BUT MMI — Métiers du Multimédia et de l’Internet.<br>
+                Formation pluridisciplinaire autour du web, de la communication et de la création numérique.<br>
+                Domaines abordés : conception d’interfaces, expérience utilisateur, développement web, communication, création audiovisuelle et gestion de projet.<br>
+                Je suis actuellement à la recherche d’une alternance.
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-5">
+            <img src="images/photo-bran.png" alt="Photo de Bran" class="photo-placeholder">
+          </div>
+        </div>
+      </section>
+
+      <section class="main-block">
+        <div id="competences" class="section-chip">Compétences</div>
+        <div class="columns is-multiline is-variable is-4">
+          <div class="column is-one-fifth-desktop is-half-tablet">
+            <div class="card skills-card">
+              <div class="card-image">
+                <div class="skill-placeholder"></div>
+              </div>
+              <div class="card-content">
+                <p class="title is-6">UX & Interfaces</p>
+                <p class="content">Analyse des besoins utilisateurs, parcours clairs, hiérarchisation de l’information et prototypage d’interfaces web.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-one-fifth-desktop is-half-tablet">
+            <div class="card skills-card">
+              <div class="card-image">
+                <div class="skill-placeholder"></div>
+              </div>
+              <div class="card-content">
+                <p class="title is-6">Développement web</p>
+                <p class="content">Conception de sites structurés et responsives, architecture de l’information, optimisation de la navigation et adaptation multi-supports.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-one-fifth-desktop is-half-tablet">
+            <div class="card skills-card">
+              <div class="card-image">
+                <div class="skill-placeholder"></div>
+              </div>
+              <div class="card-content">
+                <p class="title is-6">Création audiovisuelle</p>
+                <p class="content">Conception de contenus audio et vidéo, construction narrative, rythme, cohérence visuelle et post-production.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-one-fifth-desktop is-half-tablet">
+            <div class="card skills-card">
+              <div class="card-image">
+                <div class="skill-placeholder"></div>
+              </div>
+              <div class="card-content">
+                <p class="title is-6">Communication & Marketing</p>
+                <p class="content">Analyse de cible, stratégie de communication, création de contenus visuels et éditoriaux, cohérence de positionnement.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-one-fifth-desktop is-half-tablet">
+            <div class="card skills-card">
+              <div class="card-image">
+                <div class="skill-placeholder"></div>
+              </div>
+              <div class="card-content">
+                <p class="title is-6">Gestion de projet</p>
+                <p class="content">Planification, structuration, travail en équipe, adaptation aux contraintes et suivi des objectifs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main-block">
+        <div id="projets" class="section-chip">Projet</div>
+        <div class="columns is-vcentered is-variable is-4">
+          <div class="column is-2 is-hidden-touch project-side">
+            <div id="leftPreview" class="side-project-placeholder">Projet précédent</div>
+          </div>
+
+          <div class="column is-narrow">
+            <button class="button is-light project-arrow" id="prevProject" type="button">←</button>
+          </div>
+
+          <div class="column">
+            <div class="card project-card">
+              <div class="card-image">
+                <img id="mainProjectImage" class="project-placeholder" src="images/pokedex.png" alt="Aperçu du projet">
+              </div>
+              <div class="card-content">
+                <p id="mainProjectCategory" class="title is-4">Projet MMI</p>
+                <p id="mainProjectName" class="subtitle is-6">Nom du projet</p>
+                <div id="mainProjectDesc" class="content">
+                  Description du projet : objectif, rôle dans le projet, outils utilisés et résultat attendu. Cette zone pourra ensuite accueillir tes vrais projets avec images, liens et détails.
+                </div>
+                <button class="button is-dark is-small see-more-btn" id="toggleDetails" type="button">voir plus</button>
+                <div id="projectDetails" class="project-details">
+                  <div id="mainProjectDetails" class="content">
+                    Détails supplémentaires du projet : contexte, tâches réalisées, logiciels utilisés, difficultés rencontrées et résultats.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column is-narrow">
+            <button class="button is-light project-arrow" id="nextProject" type="button">→</button>
+          </div>
+
+          <div class="column is-2 is-hidden-touch project-side">
+            <div id="rightPreview" class="side-project-placeholder">Projet suivant</div>
+          </div>
+        </div>
+      </section>
+
+      <footer id="contact" class="site-footer">
+        <div class="footer-inner">
+          <div class="columns is-vcentered is-variable is-6">
+            <div class="column">
+              <p class="title is-5 mb-2">Contact</p>
+              <p class="mb-2">Je suis actuellement à la recherche d’une alternance dans le domaine du développement web, du design d’interface ou de la création numérique.</p>
+              <p>Email : brandoniasherve@gmail.com</p>
+              <p>Téléphone : 07 80 40 37 53</p>
+              <p>Localisation : Pont-Scorff / Ploubezre (Lannion), Bretagne, France</p>
+              <p>Permis B</p>
+            </div>
+            <div class="column is-narrow">
+              <a class="button is-dark" href="mailto:brandoniasherve@gmail.com">Me contacter</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const burgers = Array.from(document.querySelectorAll('.navbar-burger'));
+      burgers.forEach((burger) => {
+        burger.addEventListener('click', () => {
+          const target = burger.dataset.target;
+          const menu = document.getElementById(target);
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        });
+      });
+
+      const projects = [
+        {
+          category: 'Projet MMI',
+          name: 'Site Web Pokédex',
+          desc: 'Développement d’un site interactif en HTML/CSS simulant un Pokédex, avec une organisation claire des données et une mise en page responsive.',
+          details: 'Compétences mobilisées : structuration des données, mise en page responsive et organisation logique des informations.',
+          image: 'images/pokedex.png',
+          imageAlt: 'Visuel Pokédex'
+        },
+        {
+          category: 'Projet MMI',
+          name: 'Promotion d’une commune rurale',
+          desc: 'Projet de communication en équipe visant à valoriser une commune non côtière de moins de 2000 habitants.',
+          details: 'Compétences mobilisées : analyse territoriale, création de supports visuels et présentation stratégique.',
+          image: 'images/cavan.png',
+          imageAlt: 'Visuel du projet Cavan'
+        },
+        {
+          category: 'Projet personnel',
+          name: 'Prototype de jeu Unity',
+          desc: 'Projet personnel de conception d’un prototype de jeu intégrant une réflexion sur les mécaniques et les systèmes interactifs.',
+          details: 'Compétences mobilisées : game design, tests et ajustements, structuration logique du gameplay.',
+          image: 'images/unity.png',
+          imageAlt: 'Capture du prototype Unity'
+        }
+      ];
+
+      let currentProject = 0;
+
+      const mainCategory = document.getElementById('mainProjectCategory');
+      const mainName = document.getElementById('mainProjectName');
+      const mainDesc = document.getElementById('mainProjectDesc');
+      const mainDetails = document.getElementById('mainProjectDetails');
+      const mainImage = document.getElementById('mainProjectImage');
+      const leftPreview = document.getElementById('leftPreview');
+      const rightPreview = document.getElementById('rightPreview');
+      const prevProjectBtn = document.getElementById('prevProject');
+      const nextProjectBtn = document.getElementById('nextProject');
+      const toggleDetailsBtn = document.getElementById('toggleDetails');
+      const projectDetails = document.getElementById('projectDetails');
+
+      function renderProject() {
+        const current = projects[currentProject];
+        const prev = projects[(currentProject - 1 + projects.length) % projects.length];
+        const next = projects[(currentProject + 1) % projects.length];
+
+        mainCategory.textContent = current.category;
+        mainName.textContent = current.name;
+        mainDesc.textContent = current.desc;
+        mainDetails.textContent = current.details;
+        mainImage.src = current.image;
+        mainImage.alt = current.imageAlt;
+
+        leftPreview.textContent = prev.name;
+        rightPreview.textContent = next.name;
+
+        projectDetails.classList.remove('is-open');
+        toggleDetailsBtn.textContent = 'voir plus';
+      }
+
+      prevProjectBtn.addEventListener('click', () => {
+        currentProject = (currentProject - 1 + projects.length) % projects.length;
+        renderProject();
+      });
+
+      nextProjectBtn.addEventListener('click', () => {
+        currentProject = (currentProject + 1) % projects.length;
+        renderProject();
+      });
+
+      toggleDetailsBtn.addEventListener('click', () => {
+        projectDetails.classList.toggle('is-open');
+        toggleDetailsBtn.textContent = projectDetails.classList.contains('is-open') ? 'voir moins' : 'voir plus';
+      });
+
+      renderProject();
+    });
+  </script>
+</body>
+</html>
